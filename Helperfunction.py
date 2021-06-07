@@ -1,5 +1,5 @@
 import os
-
+import cv2
 
 def check_images(files, valid_extensions):
   """
@@ -22,3 +22,14 @@ def check_images(files, valid_extensions):
         os.remove(another_path+'/'+another_path[m])
         print (f"removed {another_path[m]} having extension {ext}")
         continue
+"""
+any file converter to jpeg format function
+"""
+def converter (original_path, duplicate_path):
+  images=os.listdir(original_path)
+  for i in range (len(images)):
+    path=original_path+'/'+images[i]
+    png_img = cv2.imread(path)
+    spliter=images[i].split('.')
+    path_2=duplicate_path+'/'+f"{spliter[0]}.jpeg"
+    cv2.imwrite(path_2, png_img, [int(cv2.IMWRITE_JPEG_QUALITY), 100])
