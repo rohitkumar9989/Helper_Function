@@ -70,3 +70,20 @@ def converter_2 (original_path, extension):
           path_2=original_path+'/'+filenames[l]+'/'+f"{spliter[0]}.jpeg"
           os.remove(path=path2)
           cv2.imwrite(path_2, png_img, [int(cv2.IMWRITE_JPEG_QUALITY), 100])
+
+          
+          
+          
+def get_image (filepaths):
+  try:
+    os.makedirs('/content/drive/MyDrive/Face_data/person_true')
+  except Exception as e:
+    os.rmdir('/content/drive/MyDrive/Face_data/person_true')
+    os.mkdir('/content/drive/MyDrive/Face_data/person_true')
+  new_directory='/content/drive/MyDrive/Face_data/person_true'
+  for m in range (len(filepaths)):
+    for i in range (150):
+      path_2=new_directory+'/'+f"person_1{i}{m}"+'.jpeg'
+      im1 = Image.open(filepaths[m]) 
+      im1 = im1.save(path_2)
+    m+=1
